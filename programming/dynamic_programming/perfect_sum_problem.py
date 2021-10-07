@@ -22,7 +22,7 @@ def main(array, target):
     for i in range(n + 1):
         for j in range(target + 1):
             if i == 0:
-                t[0][j  ] = False
+                t[0][j] = False
             if j == 0:
                 t[i][0] = True
     
