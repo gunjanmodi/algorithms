@@ -1,48 +1,49 @@
-def get_inversion_count(arr):
-    if len(arr) == 1:
+def count_inversions(array):
+    return subarray_inversion_count(array, 0, len(array) - 1)
+
+
+def subarray_inversion_count(array, start, end):
+    if end <= start:
         return 0
-    # auxiliary_array = arr[:]
+    mid = (start + end) // 2
+    left_subarray_inversion_count = subarray_inversion_count(array, start, mid)
+    right_subarray_inversion_count = subarray_inversion_count(array, mid + 1, end)
+    merged_inversion_count = merge_inversion_count(array, start, mid, end)
+    return left_subarray_inversion_count + right_subarray_inversion_count + merged_inversion_count
+
+
+def merge_inversion_count(array, start, mid, end):
+    sorted_temp_array = [0] * len(array)
+    i = start
+    j = mid + 1
+    k = start
     inversion_count = 0
-    return _divide_array(arr, 0, len(arr) - 1, inversion_count)
 
-
-def _divide_array(array, start_idx, end_idx, inversion_count):
-    if start_idx == end_idx:
-        return
-    mid_idx = (start_idx + end_idx ) // 2
-    left_half = array[:mid_idx]
-    right_half = array[mid_idx:]
-    _merge(left_half, right_half, inversion_count)
-
-def _merge(left_half, right_half, inversion_count):
-    sorted_array = [None] * len(left_half) + len(right_half)
-    k = i = j = 0
-    while i < len(left_half) and j < len(right_half):
-        if left_half[i] <= right_half[j]:
-            sorted_array[k] = left_half[i]
-            inversion_count += 1
+    while i <= mid and j <= end:
+        if array[i] <= array[j]:
+            sorted_temp_array[k] = array[i]
             i += 1
+            k += 1
         else:
-            sorted_array[k] = right_half[j]
+            sorted_temp_array[k] = array[j]
+            inversion_count += mid + 1 - i
             j += 1
-    while i < len(left_half):
-        # sorted_array.append(left_half[i])
+            k += 1
+
+    while i <= mid:
+        sorted_temp_array[k] = array[i]
         i += 1
-    while j < len(right_half):
-        # sorted_array.append(right_half[j])
+        k += 1
+
+    while j <= end:
+        sorted_temp_array[k] = array[j]
         j += 1
-    return sorted_array, inversion_count
+        k += 1
+
+    for idx in range(start, end + 1):
+        array[idx] = sorted_temp_array[idx]
+
+    return inversion_count
 
 
-
-
-
-
-
-
-
-
-# print(get_inversion_count([1, 2, 3, 4, 5]))
-# print(get_inversion_count([2, 4, 1, 3, 5]))  # 1, 2, 4, 3, 5
-print(get_inversion_count([5, 4, 3, 2, 1]))
-
+print(count_inversions([2, 3, 3, 1, 9, 5, 6]))
