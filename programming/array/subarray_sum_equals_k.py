@@ -1,4 +1,4 @@
-def sub_array_sum_zero(nums):
+def sub_array_exists(nums, k):
     count = 0
     sums = 0
     d = dict()
@@ -6,14 +6,14 @@ def sub_array_sum_zero(nums):
     
     for i in range(len(nums)):
         sums += nums[i]
-        count += d.get(sums,0)
+        count += d.get(sums-k,0)
         d[sums] = d.get(sums,0) + 1
     return True if count > 0 else False
 
 
 if __name__ == '__main__':
-    print(sub_array_sum_zero([4, 2, -3, 1, 6]))
-    print(sub_array_sum_zero([10, -10]))
+    print(sub_array_exists([1, 1, 1], 2))
+    print(sub_array_exists([1,2,3], 3))
 
 
 
