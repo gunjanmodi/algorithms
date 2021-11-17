@@ -1,17 +1,25 @@
-def main(a, x):
-    min_count = float('inf')
-    for i in range(len(a)):
-        current_count = 1
-        current_total = a[i]
-        if current_total > x:
-            return 1
-        for j in range(i + 1, len(a)):
-            current_total += a[j]
-            current_count += 1
-            if current_total > x:
-                min_count = min(min_count, current_count)
-                break
-    return min_count
+def smallest_subarray_bruteforce(array, x):
+    min_length = float('inf')
+    for i in range(len(array)):
+        current_sum = array[i]
+        current_length = 1
+        for j in range(i + 1, len(array)):
+            current_sum += array[j]
+            current_length += 1
+            if current_sum > x and current_length < min_length:
+                min_length = current_length
+    return min_length
 
-print(main([1, 4, 45, 6, 0, 19], 51))
-print(main([1, 10, 5, 2, 7], 9))
+
+def smallest_subarray_sliding_window(array, target):
+    window_start, window_end = 0, 0
+    current_sum = 0
+    min_size = float('inf')
+    while window_end < len(array):
+        current_sum += array[window_end]
+        while current_sum >= target:
+            current_sum -= array[window_start]
+            min_size = min(min_size, window_end - window_start + 1)
+            window_start += 1 
+        window_end += 1
+    return min_size if min_size !=float('inf') else 0

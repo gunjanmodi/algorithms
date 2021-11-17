@@ -1,6 +1,7 @@
 def rearrange(nums):
     nums.sort()
-    i = j = 1
+    i = 0
+    j = 1
     while j < len(nums):
         if nums[j] > 0:
             break
@@ -13,8 +14,6 @@ def rearrange(nums):
         j += 1
 
     return nums
-
-
 
 
 # print(rearrange([1, 2, 3, -4, -1, 4])) # [-4, 1, -1, 2, 3, 4]

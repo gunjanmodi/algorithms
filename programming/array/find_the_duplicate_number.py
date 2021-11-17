@@ -8,15 +8,15 @@ def find_duplicate(nums):
         if slow == fast:
             break
 
-    check = 0
+    fast = 0
     while True:
         slow = nums[slow]
-        check = nums[check]
+        fast = nums[fast]
 
-        if slow == check:
+        if slow == fast:
             break
 
-    return check
+    return fast
 
 
 

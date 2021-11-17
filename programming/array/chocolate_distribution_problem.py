@@ -1,30 +1,18 @@
-def find_min_diff(arr, m):
-    arr.sort()
-    # if there are no chocolates or number
-    # of students is 0
-    if (m == 0 or len(arr) == 0):
-        return 0
-
-    # Sort the given packets
-    arr.sort()
-
-    # Number of students cannot be more than
-    # number of packets
-    if (len(arr) < m):
+def find_min_diff(array, m):
+    if m > len(array):
         return -1
-
-    # Largest number of chocolates
-    min_diff = arr[len(arr) - 1] - arr[0]
-
-    # Find the subarray of size m such that
-    # difference between last (maximum in case
-    # of sorted) and first (minimum in case of
-    # sorted) elements of subarray is minimum.
-    for i in range(len(arr) - m + 1):
-        min_diff = min(min_diff, arr[i + m - 1] - arr[i])
-
+    if m == 0 or len(array) == 0:
+        return 0
+    array.sort()
+    min_diff = float('inf')
+    window_start = 0
+    for window_end in range(len(array)):
+        if window_end >= m - 1:
+            current_diff = array[window_end] - array[window_start]
+            min_diff = min(min_diff, current_diff)
+            window_start += 1
     return min_diff
 
 
 
-find_min_diff([3, 4, 1, 9, 56, 7, 9, 12], 5)
+print(find_min_diff([3, 4, 1, 9, 56, 7, 9, 12], 5))
