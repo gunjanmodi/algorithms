@@ -18,9 +18,7 @@ def swap(array, a, b):
     array[a], array[b] = array[b], array[a]
 
 
-
-
 print(permutations([1,2,3]))
-print(permutations([1,2]))
-print(permutations([1]))
-print(permutations([]))
+# print(permutations([1,2]))
+# print(permutations([1]))
+# print(permutations([]))

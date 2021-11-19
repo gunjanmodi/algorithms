@@ -7,12 +7,12 @@ Test thoroughly (5 min)
 Analyze time and space complexity (1 min)
 """
 
+# I/P - O/P Method of Recursion
 
 # Time: O() | Space: O()
 def subset(string):
     result = []
     result = subset_helper(string, "", result)
-    result.sort()
     return result
 
 
@@ -20,17 +20,17 @@ def subset_helper(string, new_string, result):
     if len(string) == 0:
         result.append(new_string)
         return result
-    top = string[-1]
-    string = string[:-1]
+    top = string[0]
+    string = string[1:]
     result = subset_helper(string, new_string, result)
-    new_string = top+new_string
+    new_string += top
     result = subset_helper(string, new_string, result)
     return result
 
 
 # Test cases: Normal1, Normal2, Normal3, Negative, Empty, Too long
 print(subset("abc"))
-print(subset("abcd"))
-print(subset(""))
-print(subset("abcdefghijk"))
-print(subset("aab"))
+# print(subset("abcd"))
+# print(subset(""))
+# print(subset("abcdefghijk"))
+# print(subset("aab"))

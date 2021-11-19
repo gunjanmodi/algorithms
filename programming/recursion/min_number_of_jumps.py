@@ -16,6 +16,7 @@ def solve(array, i):
 
 
 if __name__ == '__main__':
+    print(min_jumps([2,3,1,1,4]))
     print(min_jumps([3, 4, 2, 1, 2, 3, 7, 1, 1, 1, 3]))
     print(min_jumps([1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9]))
     print(min_jumps([1, 4, 3, 2, 6, 7]))
