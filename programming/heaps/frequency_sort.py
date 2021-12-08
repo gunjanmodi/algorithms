@@ -18,7 +18,7 @@ def main(array):
         element = heapq.heappop(max_heap)
         for i in range(element[0] * -1):
             result.append(element[1])
-    print(*result)
+    
     return result
 
 

@@ -1,20 +1,25 @@
-import heapq
-from heapq import heapify
+from heapq import heapify, heappop
 
 
 def top_k_frequent_numbers(array, k):
     counts = {}
     for i, num in enumerate(array):
         if num in counts:
-            new_count = (counts[num][0]) + 1
-            counts[num] = (new_count, num)
+            new_count = (counts[num][0] * -1) + 1
+            counts[num] = (-new_count, num)
         else:
-            counts[num] = (1, num)
+            counts[num] = (-1, num)
 
     min_heap = list(counts.values())
     heapify(min_heap)
-    result = heapq.nlargest(k, min_heap)
-    return [item[1] for item in result]
+    result = []
+    i = 0
+    while i < k:
+        item = heappop(min_heap)
+        result.append(item[1])
+        i += 1
+
+    return result
 
 
 if __name__ == '__main__':

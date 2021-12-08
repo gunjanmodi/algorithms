@@ -9,7 +9,6 @@ def k_closest_numbers(array, x, k):
 
     result = []
     j = 1
-    # _ = heappop(min_heap)
     while j <= k:
         result.append(heappop(min_heap)[1])
         j += 1
