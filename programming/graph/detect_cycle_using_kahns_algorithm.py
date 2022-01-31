@@ -8,8 +8,8 @@ class Graph:
         self.graph[node1].append(node2)
 
 
-def topological_sort_bfs(graph, nodes):
-    result = []
+def topological_sort(graph, nodes):
+    count = 0
     in_degrees = {}
     for i in range(nodes):
         in_degrees[i] = 0
@@ -27,34 +27,15 @@ def topological_sort_bfs(graph, nodes):
 
     while queue:
         node = queue.popleft()
-        result.append(node)
+        count += 1
+
         adjacents = graph[node]
         for adjacent in adjacents:
             in_degrees[adjacent] -= 1
             if in_degrees[adjacent] == 0:
                 queue.append(adjacent)
 
-    return result
-
-
-def dfs_helper(u, graph, visited, stack):
-    visited.add(u)
-    for v in graph[u]:
-        if v not in visited:
-            dfs_helper(v, graph, visited, stack)
-    stack.insert(0, u)
-
-
-def topological_sort_dfs(graph, vertices):
-    visited = set()
-    stack = []
-    for u in range(vertices):
-        if u not in visited:
-            dfs_helper(u, graph, visited, stack)
-    return stack
-
-
-
+    return count != nodes
 
 
 if __name__ == '__main__':
@@ -62,20 +43,13 @@ if __name__ == '__main__':
     g = Graph(5)
     for edge in edges:
         g.add_edge(edge[0], edge[1])
-    output = topological_sort_bfs(g.graph, g.nodes)
-    print("BFS: ", output)
-    output = topological_sort_dfs(g.graph, g.nodes)
-    print("DFS: ",output)
+    output = topological_sort(g.graph, g.nodes)
+    print(output)
 
 
-    edges = [[0, 1], [0, 3], [1, 2], [2, 3], [2, 4], [3, 4]]
+    edges = [[0, 1], [1, 2], [2, 3], [3, 1], [4, 1]]
     g = Graph(5)
     for edge in edges:
         g.add_edge(edge[0], edge[1])
-    output = topological_sort_bfs(g.graph, g.nodes)
-    print("BFS: ", output)
-    output = topological_sort_dfs(g.graph, g.nodes)
-    print("DFS: ",output)
-
-
-
+    output = topological_sort(g.graph, g.nodes)
+    print(output)

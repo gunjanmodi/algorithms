@@ -1,6 +1,7 @@
 class Graph:
     def __init__(self, nodes):
-        self.adjacency_list = [[] for _ in range(nodes)]
+        self.V = nodes
+        self.adjacency_list = [[] for _ in range(self.V)]
 
     def add_edge(self, node1, node2):
         self.adjacency_list[node1].append(node2)
