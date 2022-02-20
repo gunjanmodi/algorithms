@@ -1,4 +1,0 @@
-{'test': 'test'}
-{'geek': 10, 'geeky': True}
-{'GeeksforGeeks': 'Education', 'geekgod': 101.0, 3: 'gfg'}
-{'supergeek': 5}
