@@ -10,14 +10,14 @@ class Solution: # noqa
         n = len(columnTitle) # noqa
         if not columnTitle:
             return 0
-        answer = []
+        answer = 0
         x = len(columnTitle) - 1
         for i in range(n):
             current = columnTitle[i]
             position = pos(current)
-            answer.append(position * pow(26, x))
+            answer += position * pow(26, x)
             x -= 1
-        return sum(answer)
+        return answer
 
 
 def pos(char):
