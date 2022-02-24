@@ -25,6 +25,5 @@ def majority_elements(nums):
     return major
 
 
-
 if __name__ == '__main__':
     print(majority_elements([2, 2, 1, 1, 2, 2, 2]))
