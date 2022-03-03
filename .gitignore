@@ -5,3 +5,4 @@ __pycache__/
 .vscode/*
 *.py[cod]
 algorithms/temp.py
+temp.py
